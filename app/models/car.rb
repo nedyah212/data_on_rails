@@ -7,6 +7,8 @@ class Car < ApplicationRecord
 
   validates :make, presence: true
   validates :model, presence: true
+  validates :color, presence: true
+  validates :engine_size, presence: true
   validates :year, numericality: {
     only_integer: true, greater_than: 1885,
     less_than_or_equal_to: Date.current.year + 1

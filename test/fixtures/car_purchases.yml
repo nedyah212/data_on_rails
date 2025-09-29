@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  car: one
+  person: one
+  dealership: one
+  purchase_date: 2025-09-29
+  price_paid: 9.99
+  financing_type: MyString
+  kilometers_at_purchase: 1
+  condition: MyString
+
+two:
+  car: two
+  person: two
+  dealership: two
+  purchase_date: 2025-09-29
+  price_paid: 9.99
+  financing_type: MyString
+  kilometers_at_purchase: 1
+  condition: MyString

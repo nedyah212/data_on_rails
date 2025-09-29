@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manufacturer: one
+  make: MyString
+  model: MyString
+  year: 1
+  base_price: 9.99
+  color: MyString
+  engine_size: MyString
+  transmission: MyString
+  kilometers: 1
+
+two:
+  manufacturer: two
+  make: MyString
+  model: MyString
+  year: 1
+  base_price: 9.99
+  color: MyString
+  engine_size: MyString
+  transmission: MyString
+  kilometers: 1

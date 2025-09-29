@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_29_103128) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_29_152932) do
   create_table "car_features", force: :cascade do |t|
     t.integer "car_id", null: false
     t.integer "feature_id", null: false

@@ -8,7 +8,6 @@ csv_text = File.read(Rails.root.join('db', 'seeds/manufacturers.csv'))
 csv = CSV.parse(csv_text, headers: true)
 csv.each do |row|
   Manufacturer.create!(
-    id: row['make_id'].to_i,
     make: row['make']
   )
 end

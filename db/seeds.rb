@@ -8,7 +8,9 @@ csv_text = File.read(Rails.root.join('db', 'seeds/manufacturers.csv'))
 csv = CSV.parse(csv_text, headers: true)
 csv.each do |row|
   Manufacturer.create!(
-    make: row['make']
+    name: row['name'],
+    country: row['country'],
+    founded_year: row['founded_year']
   )
 end
 puts "Created #{Manufacturer.count} manufacturers"
@@ -19,7 +21,8 @@ puts "Seeding Car Features with Faker..."
 categories = ["Safety", "Entertainment", "Comfort", "Technology", "Exterior", "Performance", "Interior"]
 50.times do |i|
   Feature.create!(
-    name: "#{Faker::Vehicle.manufacture} #{Faker::Commerce.product_name} System #{i}",
+    name: "#{Faker::Commerce.product_name}",
+    description: "#{Faker::Marketing.buzzwords}",
     category: categories.sample,
     base_cost: rand(100..3000)
   )
@@ -40,3 +43,16 @@ csv.each do |row|
   )
 end
 puts "Created #{City.count} cities"
+
+### Seed Dealerships 4/8
+Dealership.destroy_all
+puts "Seeding Dealerships with Cities and Faker...."
+27.times do |i|
+  Dealership.create!(
+    name: "#{Faker::Company.name} #{['Motors', 'Autos', 'Cars', 'Dealership', 'Garage'].sample}",
+    address: "#{Faker::Address.street_address}, #{Faker::Address.state_abbr} #{Faker::Address.zip}",
+    phone: Faker::Base.numerify('+1-###-###-####'),
+    city: City.all.sample
+  )
+end
+puts "Created #{Dealership.count} dealerships"

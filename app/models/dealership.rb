@@ -4,7 +4,7 @@ class Dealership < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :address, presence: true
-  validates :phone_number, format: {
+  validates :phone, format: {
     with: /\A\+?[0-9\s\-\(\)]+\z/,
     message: "must be a valid phone number"
 }

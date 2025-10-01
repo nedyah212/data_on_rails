@@ -17,20 +17,25 @@ csv.each do |row|
 end
 puts "Created #{Manufacturer.count} manufacturers"
 
-### Seed Features 2/8
+
 Feature.destroy_all
-puts "Seeding Features with Faker..."
-categories = ["Safety", "Entertainment", "Comfort", "Technology", "Exterior", "Performance", "Interior"]
-50.times do |i|
+puts "Seeding Features from csv..."
+csv_text = File.read(Rails.root.join('db', 'seeds/features.csv'))
+csv = CSV.parse(csv_text, headers: true)
+
+#Convert to array and shuffle
+csv_rows = csv.to_a.shuffle
+
+rand(25..100).times do
+  row = csv_rows.pop
   Feature.create!(
-    ###This name is a placeholder until i update the feature table to link to the manufacturer
-    name: "#{Faker::Vehicle.manufacture} #{Faker::Commerce.product_name}",
-    description: "#{Faker::Marketing.buzzwords}",
-    category: categories.sample,
-    base_cost: rand(100..3000)
+    name: row['Feature_Name'],
+    description: row['Description'],
+    category: row['Category'],
+    base_cost: row['cost'].to_i,
+    manufacturer_id: Manufacturer.all.sample.id
   )
 end
-puts "Created #{Feature.count} car features"
 
 ### Seed Cities 3/8
 City.destroy_all

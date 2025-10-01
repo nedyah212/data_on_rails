@@ -1,5 +1,7 @@
 require 'faker'
 require 'csv'
+require 'net/http'
+require 'json'
 
 ##Seed manufacturers 1/8
 Manufacturer.destroy_all
@@ -58,5 +60,33 @@ end
 puts "Created #{Dealership.count} dealerships"
 
 ### Seed Cars 5/8
+### I think this is a good enough reason to use a nested loop
+### I want to avoid rate limiting, so I will make multiple calls to the API
 Car.destroy_all
-puts "Seeding Cars with Manufacturers, and API
+puts "Seeding Cars with Manufacturers, and API"
+COLORS = ['Red', 'Blue', 'Green', 'Black', 'White', 'Silver', 'Yellow', 'Grey', 'Orange', 'Purple']
+
+make = Manufacturer.sample
+year = rand(2000..2025)
+iterations = rand(5..15)
+
+iterations.times do
+  url = URI("http://www.carqueryapi.com/api/0.3/?cmd=getTrims&make=#{make}&year=#{year}")
+  response = Net::HTTP.get(url)
+  car_data = JSON.parse(response)
+
+  if car_data['Trims']
+    rand(1..10).times do
+      selection = car_data['Trims'].sample
+      Car.create(
+        manufacturer_id: manufacturer.id,
+        model: selection['model_name'],
+        year: selection['model_year'],
+        color: COLORS.sample,
+        trim: selection['model_trim'],
+      )
+    end
+  end
+  sleep(.25)
+end
+puts "Created #{Car.count} cars"

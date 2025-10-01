@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_01_152906) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_01_154338) do
   create_table "car_features", force: :cascade do |t|
     t.integer "car_id", null: false
     t.integer "feature_id", null: false
@@ -106,5 +106,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_01_152906) do
   add_foreign_key "car_purchases", "people"
   add_foreign_key "cars", "manufacturers"
   add_foreign_key "dealerships", "cities"
+  add_foreign_key "features", "manufacturers"
   add_foreign_key "people", "cities"
 end

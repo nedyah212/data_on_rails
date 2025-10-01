@@ -50,9 +50,18 @@ puts "Seeding Dealerships with Cities and Faker...."
 27.times do |i|
   Dealership.create!(
     name: "#{Faker::Company.name} #{['Motors', 'Autos', 'Cars', 'Dealership', 'Garage'].sample}",
-    address: "#{Faker::Address.street_address}, #{Faker::Address.state_abbr} #{Faker::Address.zip}",
+    address: "#{Faker::Address.street_address}, #{Faker::Address.zip}",
     phone: Faker::Base.numerify('+1-###-###-####'),
     city: City.all.sample
   )
 end
 puts "Created #{Dealership.count} dealerships"
+
+### Seed Cars 5/8
+Car.destroy_all
+puts "Seeding Cars with Manufacturers and Faker...."
+100.times do |i|
+  Car.create!(
+    manufacturers: Manufacturer.all.sample,
+    make: Faker::Vehicle.make, )
+end

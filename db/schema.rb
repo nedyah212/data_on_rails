@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_01_124032) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_01_152906) do
   create_table "car_features", force: :cascade do |t|
     t.integer "car_id", null: false
     t.integer "feature_id", null: false
@@ -43,7 +43,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_01_124032) do
     t.string "model"
     t.integer "year"
     t.string "color"
-    t.integer "kilometers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "trim"
@@ -76,6 +75,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_01_124032) do
     t.decimal "base_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "manufacturer_id"
   end
 
   create_table "manufacturers", force: :cascade do |t|

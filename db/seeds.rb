@@ -17,7 +17,7 @@ csv.each do |row|
 end
 puts "Created #{Manufacturer.count} manufacturers"
 
-
+##Seed Features 2/8
 Feature.destroy_all
 puts "Seeding Features from csv..."
 csv_text = File.read(Rails.root.join('db', 'seeds/features.csv'))
@@ -29,10 +29,10 @@ csv_rows = csv.to_a.shuffle
 rand(25..100).times do
   row = csv_rows.pop
   Feature.create!(
-    name: row['Feature_Name'],
-    description: row['Description'],
-    category: row['Category'],
-    base_cost: row['cost'].to_i,
+    name: row[1],
+    description: row[3],
+    category: row[2],
+    base_cost: row[5].to_i,
     manufacturer_id: Manufacturer.all.sample.id
   )
 end

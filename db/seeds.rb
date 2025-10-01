@@ -5,7 +5,7 @@ require 'json'
 
 ##Seed manufacturers 1/8
 Manufacturer.destroy_all
-puts "Seeding Manufacturers from file"
+puts "\nSeeding Manufacturers from file"
 csv_text = File.read(Rails.root.join('db', 'seeds/manufacturers.csv'))
 csv = CSV.parse(csv_text, headers: true)
 csv.each do |row|
@@ -15,7 +15,7 @@ csv.each do |row|
     founded_year: row['founded_year']
   )
 end
-puts "Created #{Manufacturer.count} manufacturers"
+puts "----Created #{Manufacturer.count} manufacturers"
 
 ##Seed Features 2/8
 Feature.destroy_all
@@ -28,7 +28,7 @@ csv_rows = csv.to_a.shuffle
 
 rand(25..100).times do
   manufacturer = Manufacturer.all.sample
-  row = csv_rows.sample
+  row = csv_rows.pop
   Feature.create!(
     name: row[1],
     description: row[3],
@@ -37,6 +37,7 @@ rand(25..100).times do
     manufacturer_id: manufacturer.id
   )
 end
+puts "----Created #{Feature.count} features for #{Manufacturer.count} manufacturers"
 
 ### Seed Cities 3/8
 City.destroy_all
@@ -51,20 +52,21 @@ csv.each do |row|
     population: row['population'].to_i
   )
 end
-puts "Created #{City.count} cities"
+puts "----Created #{City.count} cities"
 
 ### Seed Dealerships 4/8
 Dealership.destroy_all
 puts "Seeding Dealerships with Cities and Faker...."
 27.times do |i|
+  city = City.all.sample
   Dealership.create!(
     name: "#{Faker::Company.name} #{['Motors', 'Autos', 'Cars', 'Dealership', 'Garage'].sample}",
     address: "#{Faker::Address.street_address}, #{Faker::Address.zip}",
     phone: Faker::Base.numerify('+1-###-###-####'),
-    city: City.all.sample
+    city_id: city.id
   )
 end
-puts "Created #{Dealership.count} dealerships"
+puts "----Created #{Dealership.count} dealerships"
 
 ### Seed Cars 5/8
 ### Dynamic seeding from carqueryapi.com
@@ -86,7 +88,7 @@ iterations.times do
   sleep(0.25)
 
   if car_data['Trims'].any?
-    rand(1..10).times do
+    rand(1..13).times do
       selection = car_data['Trims'].sample
       Car.create(
         manufacturer_id: make.id,
@@ -98,8 +100,9 @@ iterations.times do
     end
     puts "----Created #{Car.where(manufacturer_id: make.id, year: year).count} vehicles"
   else
-    puts "No data found for #{make.name} for year #{year}"
+    puts "----No data found for #{make.name} for year #{year}"
   end
 
 end
-puts "Created #{Car.count} cars"
+puts "--Created #{Car.count} vehicles total"
+

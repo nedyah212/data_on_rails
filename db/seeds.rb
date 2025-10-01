@@ -27,13 +27,14 @@ csv = CSV.parse(csv_text, headers: true)
 csv_rows = csv.to_a.shuffle
 
 rand(25..100).times do
-  row = csv_rows.pop
+  manufacturer = Manufacturer.all.sample
+  row = csv_rows.sample
   Feature.create!(
     name: row[1],
     description: row[3],
     category: row[2],
     base_cost: row[5].to_i,
-    manufacturer_id: Manufacturer.all.sample.id
+    manufacturer_id: manufacturer.id
   )
 end
 

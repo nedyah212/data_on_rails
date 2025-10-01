@@ -26,7 +26,7 @@ csv = CSV.parse(csv_text, headers: true)
 #Convert to array and shuffle
 csv_rows = csv.to_a.shuffle
 
-rand(25..100).times do
+rand(25..53).times do
   manufacturer = Manufacturer.all.sample
   row = csv_rows.pop
   Feature.create!(
@@ -106,3 +106,23 @@ iterations.times do
 end
 puts "--Created #{Car.count} vehicles total"
 
+##Seed car_features 6/8
+CarFeature.destroy_all
+
+puts "Seeding Car Features with Cars and Features"
+
+Car.count.times do
+  rand(0..4).times do
+    car = Car.all.sample
+    feature = Feature.all.sample
+    unless CarFeature.exists?(car_id: car.id, feature_id: feature.id)
+      CarFeature.create!(
+        car_id: car.id,
+        feature_id: feature.id,
+        cost: feature.base_cost + rand(100..550),
+        is_standard: [true, false].sample
+      )
+    end
+  end
+end
+puts "----Created random #{CarFeature.count} car features"

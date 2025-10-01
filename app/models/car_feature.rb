@@ -9,7 +9,7 @@ class CarFeature < ApplicationRecord
   validates :cost, numericality: {
     greater_than_or_equal_to: 0
   }, allow_nil: false
-  validates :is_standard, includion: {
+  validates :is_standard, inclusion: {
     in: [true, false],
     message: "must be true or false"
   }, allow_nil: false

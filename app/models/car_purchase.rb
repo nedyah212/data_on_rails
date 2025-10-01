@@ -2,6 +2,7 @@ class CarPurchase < ApplicationRecord
   belongs_to :car
   belongs_to :person
   belongs_to :dealership
+  belongs_to :salesperson
 
   validates :purchase_date, presence: true
   validates :price_paid, numericality: {

@@ -61,8 +61,9 @@ end
 puts "Created #{Dealership.count} dealerships"
 
 ### Seed Cars 5/8
+### Dynamic seeding from carqueryapi.com
 ### I think this is a good enough reason to use a nested loop
-### I want to avoid rate limiting, so I will make multiple calls to the API
+### I want to avoid rate limiting, its a free api w/o a key
 Car.destroy_all
 COLORS = ['Red', 'Blue', 'Green', 'Black', 'White', 'Silver', 'Yellow', 'Grey', 'Orange', 'Purple']
 iterations = rand(5..15)

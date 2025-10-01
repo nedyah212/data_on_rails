@@ -12,7 +12,7 @@ class Person < ApplicationRecord
   validates :age, numericality: {
     only_integer: true, greater_than_or_equal_to: 18
   }, allow_nil: true
-  validates :phone_number, format: {
+  validates :phone, format: {
     with: /\A\+?[0-9\s\-\(\)]+\z/,
     message: "must be a valid phone number"
   }, allow_nil: true

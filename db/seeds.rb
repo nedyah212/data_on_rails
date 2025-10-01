@@ -111,6 +111,7 @@ CarFeature.destroy_all
 
 puts "Seeding Car Features with Cars and Features"
 
+#I know, nested loop......
 Car.count.times do
   rand(0..4).times do
     car = Car.all.sample
@@ -126,3 +127,21 @@ Car.count.times do
   end
 end
 puts "----Created random #{CarFeature.count} car features"
+
+##Seed People 7/8
+Person.destroy_all
+puts "Seeding People with Faker"
+
+150.times do
+  dealership = Dealership.all.sample
+  Person.create!(
+    city_id: dealership.city_id,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.unique.email,
+    age: rand(18..75),
+    income_bracket: rand(30000..150000).to_s,
+    phone: Faker::Base.numerify('+1-###-###-####')
+  )
+end
+puts "----Created #{Person.count} people"

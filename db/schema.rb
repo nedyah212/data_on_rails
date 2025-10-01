@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_01_154338) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_01_215952) do
   create_table "car_features", force: :cascade do |t|
     t.integer "car_id", null: false
     t.integer "feature_id", null: false
@@ -99,6 +99,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_01_154338) do
     t.index ["city_id"], name: "index_people_on_city_id"
   end
 
+  create_table "salespeople", force: :cascade do |t|
+    t.integer "dealership_id_id", null: false
+    t.integer "person_id_id", null: false
+    t.string "position", null: false
+    t.index ["dealership_id_id"], name: "index_salespeople_on_dealership_id_id"
+    t.index ["person_id_id"], name: "index_salespeople_on_person_id_id"
+  end
+
   add_foreign_key "car_features", "cars"
   add_foreign_key "car_features", "features"
   add_foreign_key "car_purchases", "cars"
@@ -108,4 +116,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_01_154338) do
   add_foreign_key "dealerships", "cities"
   add_foreign_key "features", "manufacturers"
   add_foreign_key "people", "cities"
+  add_foreign_key "salespeople", "dealership_ids"
+  add_foreign_key "salespeople", "person_ids"
 end

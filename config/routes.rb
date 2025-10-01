@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :salespeople
   root 'cars#index'
 
   resources :car_purchases, only: [:index, :show]

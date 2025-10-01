@@ -3,7 +3,7 @@ require 'csv'
 require 'net/http'
 require 'json'
 
-##Seed manufacturers 1/8
+##Seed manufacturers 1/9
 Manufacturer.destroy_all
 puts "\nSeeding Manufacturers from file"
 csv_text = File.read(Rails.root.join('db', 'seeds/manufacturers.csv'))
@@ -17,7 +17,7 @@ csv.each do |row|
 end
 puts "----Created #{Manufacturer.count} manufacturers"
 
-##Seed Features 2/8
+##Seed Features 2/9
 Feature.destroy_all
 puts "Seeding Features from csv..."
 csv_text = File.read(Rails.root.join('db', 'seeds/features.csv'))
@@ -39,7 +39,7 @@ rand(25..53).times do
 end
 puts "----Created #{Feature.count} features for #{Manufacturer.count} manufacturers"
 
-### Seed Cities 3/8
+### Seed Cities 3/9
 City.destroy_all
 puts 'Seeding Cities from file'
 csv_text = File.read(Rails.root.join('db', 'seeds/cities.csv'))
@@ -54,10 +54,10 @@ csv.each do |row|
 end
 puts "----Created #{City.count} cities"
 
-### Seed Dealerships 4/8
+### Seed Dealerships 4/9
 Dealership.destroy_all
 puts "Seeding Dealerships with Cities and Faker...."
-27.times do |i|
+4.times do |i|
   city = City.all.sample
   Dealership.create!(
     name: "#{Faker::Company.name} #{['Motors', 'Autos', 'Cars', 'Dealership', 'Garage'].sample}",
@@ -68,7 +68,7 @@ puts "Seeding Dealerships with Cities and Faker...."
 end
 puts "----Created #{Dealership.count} dealerships"
 
-### Seed Cars 5/8
+### Seed Cars 5/9
 ### Dynamic seeding from carqueryapi.com
 ### I think this is a good enough reason to use a nested loop
 ### I want to avoid rate limiting, its a free api w/o a key
@@ -106,7 +106,7 @@ iterations.times do
 end
 puts "--Created #{Car.count} vehicles total"
 
-##Seed car_features 6/8
+##Seed car_features 6/9
 CarFeature.destroy_all
 
 puts "Seeding Car Features with Cars and Features"
@@ -128,7 +128,7 @@ Car.count.times do
 end
 puts "----Created random #{CarFeature.count} car features"
 
-##Seed People 7/8
+##Seed People 7/9
 Person.destroy_all
 puts "Seeding People with Faker"
 
@@ -145,3 +145,51 @@ puts "Seeding People with Faker"
   )
 end
 puts "----Created #{Person.count} people"
+
+#Seed Salespeople 8/9
+Salesperson.destroy_all
+puts "Seeding Salespeople with Dealerships and People"
+
+available_people = Person.pluck(:id).shuffle
+
+Dealership.all.each do |dealership|
+  rand(2..6).times do
+    break if available_people.empty?
+
+    person_id = available_people.pop
+
+    Salesperson.create!(
+      dealership_id: dealership.id,
+      person_id: person_id,
+      position: ['Sales Associate', 'Senior Sales Associate', 'Sales Manager', 'Junior Sales Associate'].sample
+    )
+  end
+end
+puts "----Created #{Salesperson.count} salespeople"
+
+#Seed Car Purchases 9/9
+CarPurchase.destroy_all
+puts "Seeding Car Purchases with Cars, People, Dealerships"
+
+available_cars = Car.pluck(:id).shuffle
+
+available_cars.each do |car_id|
+  dealership = Dealership.all.sample
+  salesperson = Salesperson.where(dealership_id: dealership.id).sample
+
+  next if salesperson.nil?
+
+  CarPurchase.create!(
+    car_id: car_id,
+    person_id: Person.all.sample.id,
+    dealership_id: dealership.id,
+    salesperson_id: salesperson.id,
+    purchase_date: Faker::Date.between(from: '2020-01-01', to: '2023-01-01'),
+    price_paid: Faker::Commerce.price(range: 10000..100000),
+    financing_type: ['cash', 'loan', 'lease'].sample,
+    kilometers_at_purchase: rand(0..200000),
+    condition: ['new', 'used', 'certified pre-owned'].sample
+  )
+end
+
+puts "----Created #{CarPurchase.count} car purchases"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_01_215952) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_01_225409) do
   create_table "car_features", force: :cascade do |t|
     t.integer "car_id", null: false
     t.integer "feature_id", null: false
@@ -33,9 +33,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_01_215952) do
     t.string "condition"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "salesperson_id", null: false
     t.index ["car_id"], name: "index_car_purchases_on_car_id"
     t.index ["dealership_id"], name: "index_car_purchases_on_dealership_id"
     t.index ["person_id"], name: "index_car_purchases_on_person_id"
+    t.index ["salesperson_id"], name: "index_car_purchases_on_salesperson_id"
   end
 
   create_table "cars", force: :cascade do |t|
@@ -100,11 +102,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_01_215952) do
   end
 
   create_table "salespeople", force: :cascade do |t|
-    t.integer "dealership_id_id", null: false
-    t.integer "person_id_id", null: false
+    t.integer "dealership_id", null: false
+    t.integer "person_id", null: false
     t.string "position", null: false
-    t.index ["dealership_id_id"], name: "index_salespeople_on_dealership_id_id"
-    t.index ["person_id_id"], name: "index_salespeople_on_person_id_id"
+    t.index ["dealership_id"], name: "index_salespeople_on_dealership_id"
+    t.index ["person_id"], name: "index_salespeople_on_person_id"
   end
 
   add_foreign_key "car_features", "cars"
@@ -112,10 +114,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_01_215952) do
   add_foreign_key "car_purchases", "cars"
   add_foreign_key "car_purchases", "dealerships"
   add_foreign_key "car_purchases", "people"
+  add_foreign_key "car_purchases", "salespeople"
   add_foreign_key "cars", "manufacturers"
   add_foreign_key "dealerships", "cities"
   add_foreign_key "features", "manufacturers"
   add_foreign_key "people", "cities"
-  add_foreign_key "salespeople", "dealership_ids"
-  add_foreign_key "salespeople", "person_ids"
+  add_foreign_key "salespeople", "dealerships"
+  add_foreign_key "salespeople", "people"
 end

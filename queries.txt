@@ -1,0 +1,8 @@
+#Rails Console Queries
+
+#Find cars that have been purchased multiple times
+Car.joins(:car_purchases)
+  .group(:id, :model)
+  .having('COUNT(car_purchases.id) > 1')
+  .count
+

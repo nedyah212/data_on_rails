@@ -1,0 +1,23 @@
+<section class='dealership-section'>
+  <h3>All Dealerships</h3>
+  <table class='table-group'>
+    <thead class='table-header'>
+      <tr class='table-row'>
+        <th class='table-cell-group'>Dealership ID</th>
+        <th class='table-cell-group'>Name</th>
+        <th class='table-cell-group'>Location</th>
+        <th class='table-cell-group'>Phone</th>
+      </tr>
+    </thead>
+    <tbody class='table-body'>
+      <% @dealerships.each do |dealership| %>
+        <tr class='table-row'>
+          <td class='table-cell-group'><%= dealership.id %></td>
+          <td class='table-cell-group'><%= dealership.name %></td>
+          <td class='table-cell-group'><%= dealership.city.name %></td>
+          <td class='table-cell-group'><%= dealership.phone %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

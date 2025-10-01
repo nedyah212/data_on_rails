@@ -59,9 +59,4 @@ puts "Created #{Dealership.count} dealerships"
 
 ### Seed Cars 5/8
 Car.destroy_all
-puts "Seeding Cars with Manufacturers and Faker...."
-100.times do |i|
-  Car.create!(
-    manufacturers: Manufacturer.all.sample,
-    make: Faker::Vehicle.make, )
-end
+puts "Seeding Cars with Manufacturers, and API

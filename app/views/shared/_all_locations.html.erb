@@ -7,20 +7,14 @@
         <th class='table-cell-group'>Name</th>
         <th class='table-cell-group'>Location</th>
         <th class='table-cell-group'>Province</th>
-        <th class='table-cell-group'>Country</th>
-        <th class='table-cell-group'>Address</th>
-        <th class='table-cell-group'>Phone</th>
       </tr>
     </thead>
     <tbody class='table-body'>
       <% @dealerships.each do |dealership| %>
         <tr class='table-row'>
-          <td class='table-cell-group'><%= dealership.name %></td>
+          <td class='table-cell-group'><a href="<%= dealership_path(dealership) %>"><%= dealership.name %></a></td>
           <td class='table-cell-group'><%= dealership.city.name %></td>
           <td class='table-cell-group'><%= dealership.city.province %></td>
-          <td class='table-cell-group'><%= dealership.city.country %></td>
-          <td class='table-cell-group'><%= dealership.address %></td>
-          <td class='table-cell-group'><%= dealership.phone %></td>
         </tr>
       <% end %>
     </tbody>

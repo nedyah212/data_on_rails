@@ -1,0 +1,15 @@
+<section class='dealer-section'>
+  <h3>Dealers Section</h3>
+
+  <% if @dealership.present? %>
+    <h4><%= @dealership.name %></h4>
+    <p>Location: <%= @dealership.city.name %></p>
+    <p class='cell-group'><%= @dealership.city.province %></p>
+    <p class='cell-group'><%= @dealership.city.country %></p>
+    <p class='cell-group'><%= @dealership.address %></p>
+    <p class='cell-group'><%= @dealership.phone %></p>
+  <% end %>
+  <nav>
+    <a href="<%= dealerships_path %>">Back</a>
+  </nav>
+</section>

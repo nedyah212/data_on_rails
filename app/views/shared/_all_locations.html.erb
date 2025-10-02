@@ -4,7 +4,6 @@
   <table class='table-group'>
     <thead class='table-header'>
       <tr class='table-row'>
-        <th class='table-cell-group'>Dealership ID</th>
         <th class='table-cell-group'>Name</th>
         <th class='table-cell-group'>Location</th>
         <th class='table-cell-group'>Province</th>
@@ -16,7 +15,6 @@
     <tbody class='table-body'>
       <% @dealerships.each do |dealership| %>
         <tr class='table-row'>
-          <td class='table-cell-group'><%= dealership.id %></td>
           <td class='table-cell-group'><%= dealership.name %></td>
           <td class='table-cell-group'><%= dealership.city.name %></td>
           <td class='table-cell-group'><%= dealership.city.province %></td>

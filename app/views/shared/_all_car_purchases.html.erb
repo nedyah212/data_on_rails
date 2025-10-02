@@ -3,9 +3,9 @@
   <table class='table-group'>
     <thead class='table-header'>
       <tr class='table-row'>
-        <th class='table-cell-group'>Car Make</th>
-        <th class='table-cell-group'>Car Model</th>
-        <th class='table-cell-group'>Customer Name</th>
+        <th class='table-cell-group'>Make</th>
+        <th class='table-cell-group'>Model</th>
+        <th class='table-cell-group'>Customer</th>
         <th class='table-cell-group'>Purchase Date</th>
         <th class='table-cell-group'>Price</th>
         <th class='table-cell-group'>Salesperson</th>
@@ -13,7 +13,7 @@
     </thead>
     <tbody class='table-body'>
       <% @car_purchases.each do |purchase| %>
-        <tr>
+        <tr class='table-row'>
           <td class='table-cell-group'><%= purchase.car.manufacturer.name %></td>
           <td class='table-cell-group'><%= purchase.car.model %></td>
           <td class='table-cell-group'><%= "#{purchase.person.full_name}" %></td>

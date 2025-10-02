@@ -7,14 +7,16 @@
         <th class='table-cell-group'>Email</th>
         <th class='table-cell-group'>Age</th>
         <th class='table-cell-group'>Phone</th></th>
+        <th class='table-cell-group'>City</th>
     </thead>
     <tbody class='table-body'>
       <% @people.each do |person| %>
         <tr class='table-row'>
-          <td class='table-cell-group'><%= person.first_name + " " + person.last_name %></td>
+          <td class='table-cell-group'><%= person.full_name%></td>
           <td class='table-cell-group'><%= person.email %></td>
           <td class='table-cell-group'><%= person.age %></td>
           <td class='table-cell-group'><%= person.phone %></td>
+          <td class='table-cell-group'><%= person.city.name %></td>
         </tr>
       <% end %>
     </tbody>

@@ -16,4 +16,9 @@ class Person < ApplicationRecord
     with: /\A\+?[0-9\s\-\(\)]+\z/,
     message: "must be a valid phone number"
   }, allow_nil: true
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
 end

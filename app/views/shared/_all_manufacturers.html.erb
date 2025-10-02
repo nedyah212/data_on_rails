@@ -5,16 +5,17 @@
     <thead class='table-header'>
       <tr class='table-row'>
         <th class='table-cell-group'>Name</th>
-        <th class='table-cell-group'>Country</th>
-        <th class='table-cell-group'>Founded</th>
       </tr>
     </thead>
     <tbody class='table-body'>
       <% @manufacturers.each do |manufacturer| %>
         <tr class='table-row'>
-          <td class='table-cell-group'><%= manufacturer.name %></td>
-          <td class='table-cell-group'><%= manufacturer.country %></td>
-          <td class='table-cell-group'><%= manufacturer.founded_year %></td>
+          <td>
+              <td class='table-cell-group'>
+              <a href="<%= manufacturer_path(manufacturer) %>">
+              <%= manufacturer.name %></a></td>
+          </td>
+
         </tr>
       <% end %>
     </tbody>

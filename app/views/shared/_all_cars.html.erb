@@ -1,0 +1,26 @@
+<section class='all-cars-section'>
+  <h3>All Cars Section:</h3>
+
+  <table class='table-group'>
+    <thead class='table-header'>
+      <tr class='table-row'>
+        <th class='table-cell-group'>Make</th>
+        <th class='table-cell-group'>Model</th>
+        <th class='table-cell-group'>Year</th>
+        <th class='table-cell-group'>Colour</th>
+        <th class='table-cell-group'>Trim</th>
+      </tr>
+    </thead>
+    <tbody class='table-body'>
+      <% @cars.each do |car| %>
+        <tr class='table-row'>
+          <td class='table-cell-group'><%= car.manufacturer.name %></td>
+          <td class='table-cell-group'><%= car.model %></td>
+          <td class='table-cell-group'><%= car.year %></td>
+          <td class='table-cell-group'><%= car.color %></td>
+          <td class='table-cell-group'><%= car.trim %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

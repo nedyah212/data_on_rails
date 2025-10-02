@@ -1,0 +1,22 @@
+<section class='manufacturers-section'>
+  <h3>Manufacturers Section:</h3>
+
+  <table class='table-group'>
+    <thead class='table-header'>
+      <tr class='table-row'>
+        <th class='table-cell-group'>Name</th>
+        <th class='table-cell-group'>Country</th>
+        <th class='table-cell-group'>Founded</th>
+      </tr>
+    </thead>
+    <tbody class='table-body'>
+      <% @manufacturers.each do |manufacturer| %>
+        <tr class='table-row'>
+          <td class='table-cell-group'><%= manufacturer.name %></td>
+          <td class='table-cell-group'><%= manufacturer.country %></td>
+          <td class='table-cell-group'><%= manufacturer.founded_year %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

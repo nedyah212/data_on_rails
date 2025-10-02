@@ -1,0 +1,22 @@
+<section class='people-section'>
+  <h3>Interactions</h3>
+  <table class='table-group'>
+    <thead class='table-header'>
+      <tr class='table-row'>
+        <th class='table-cell-group'>Name</th>
+        <th class='table-cell-group'>Email</th>
+        <th class='table-cell-group'>Age</th>
+        <th class='table-cell-group'>Phone</th></th>
+    </thead>
+    <tbody class='table-body'>
+      <% @people.each do |person| %>
+        <tr class='table-row'>
+          <td class='table-cell-group'><%= person.first_name + " " + person.last_name %></td>
+          <td class='table-cell-group'><%= person.email %></td>
+          <td class='table-cell-group'><%= person.age %></td>
+          <td class='table-cell-group'><%= person.phone %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

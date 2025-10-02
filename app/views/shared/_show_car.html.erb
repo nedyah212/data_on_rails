@@ -1,0 +1,21 @@
+<section class='car-section'>
+  <h3>Car Details:</h3>
+
+  <% if @car.present? %>
+    <h4><%= @car.year %> <%= @car.manufacturer.name %> <%= @car.model %></h4>
+    <p>Colour: <%= @car.color %></p>
+    <p class='cell-group'>Trim: <%= @car.trim %></p>
+
+    <% if @car.features.any? %>
+      <h5>Features:</h5>
+      <ul>
+        <% @car.features.each do |feature| %>
+          <li><%= feature.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+  <nav></nav>
+    <a href="<%= cars_path %>">Back</a>
+  </nav>
+</section>

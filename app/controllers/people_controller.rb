@@ -1,8 +1,10 @@
 class PeopleController < ApplicationController
   def index
     #Lets not display people who are salespeople,
-    #this page could be used to retarget customers
-    @people = Person.left_joins(:salesperson).where(salespeople: { id: nil })
+    #Only displays carless people who are not salespeople
+    @people = Person.left_joins(:salesperson, :car_purchases)
+      .where(salespeople: { id: nil })
+      .where(car_purchases: { id: nil })
   end
 
   def show

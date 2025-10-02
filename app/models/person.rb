@@ -1,6 +1,8 @@
 class Person < ApplicationRecord
   belongs_to :city
+  has_one :salesperson
   has_many :car_purchases
+  #allows person.cars --- shortcut!
   has_many :cars, through: :car_purchases
 
   validates :first_name, presence: true
@@ -17,8 +19,15 @@ class Person < ApplicationRecord
     message: "must be a valid phone number"
   }, allow_nil: true
 
+  #Virtual attributes
+  #Full name of person
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  #Is this person a salesperson?
+  def is_salesperson?
+    salesperson.presenet?
   end
 
 end

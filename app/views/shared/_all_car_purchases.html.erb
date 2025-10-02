@@ -3,21 +3,23 @@
   <table class='table-group'>
     <thead class='table-header'>
       <tr class='table-row'>
-        <th class='table-cell-group'>Purchase ID</th>
+        <th class='table-cell-group'>Car Make</th>
         <th class='table-cell-group'>Car Model</th>
         <th class='table-cell-group'>Customer Name</th>
         <th class='table-cell-group'>Purchase Date</th>
         <th class='table-cell-group'>Price</th>
+        <th class='table-cell-group'>Salesperson</th>
       </tr>
     </thead>
     <tbody class='table-body'>
       <% @car_purchases.each do |purchase| %>
         <tr>
-          <td class='table-cell-group'><%= purchase.id %></td>
+          <td class='table-cell-group'><%= purchase.car.manufacturer.name %></td>
           <td class='table-cell-group'><%= purchase.car.model %></td>
           <td class='table-cell-group'><%= "#{purchase.person.first_name} #{purchase.person.last_name}" %></td>
           <td class='table-cell-group'><%= purchase.purchase_date.strftime("%B %d, %Y") %></td>
           <td class='table-cell-group'><%= number_to_currency(purchase.price_paid) %></td>
+          <td class='table-cell-group'><%= "#{purchase.salesperson.person.first_name} #{purchase.salesperson.person.last_name}"%></td>
         </tr>
       <% end %>
     </tbody>

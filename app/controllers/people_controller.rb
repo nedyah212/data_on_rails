@@ -5,6 +5,8 @@ class PeopleController < ApplicationController
     @people = Person.left_joins(:salesperson, :car_purchases)
       .where(salespeople: { id: nil })
       .where(car_purchases: { id: nil })
+      .order(:first_name)
+      .page params[:page]
   end
 
   def show

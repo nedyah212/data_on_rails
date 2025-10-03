@@ -184,17 +184,21 @@ available_cars.first(cars_to_sell).each do |car_id|
 
   next if salesperson.nil?
 
-  CarPurchase.create!(
-    car_id: car_id,
-    person_id: Person.all.sample.id,
-    dealership_id: dealership.id,
-    salesperson_id: salesperson.id,
-    purchase_date: Faker::Date.between(from: '2020-01-01', to: '2023-01-01'),
-    price_paid: Faker::Commerce.price(range: 10000..100000),
-    financing_type: ['cash', 'loan', 'lease'].sample,
-    kilometers_at_purchase: rand(0..200000),
-    condition: ['new', 'used', 'certified pre-owned'].sample
-  )
+  begin
+    CarPurchase.create!(
+      car_id: car_id,
+      person_id: Person.all.sample.id,
+      dealership_id: dealership.id,
+      salesperson_id: salesperson.id,
+      purchase_date: Faker::Date.between(from: '2020-01-01', to: '2023-01-01'),
+      price_paid: Faker::Commerce.price(range: 10000..100000),
+      financing_type: ['cash', 'loan', 'lease'].sample,
+      kilometers_at_purchase: rand(0..200000),
+      condition: ['new', 'used', 'certified pre-owned'].sample
+    )
+  rescue ActiveRecord::RecordInvalid => e
+    puts "Failed to create purchase for car #{car_id}: #{e.message}"
+  end
 end
 
 puts "----Created #{CarPurchase.count} car purchases"

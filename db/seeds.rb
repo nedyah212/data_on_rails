@@ -173,7 +173,12 @@ puts "Seeding Car Purchases with Cars, People, Dealerships"
 
 available_cars = Car.pluck(:id).shuffle
 
-available_cars.each do |car_id|
+percentage = rand(70..80) / 100.0
+cars_to_sell = (available_cars.length * percentage).to_i
+
+puts "Assigning purchases to #{cars_to_sell} out of #{available_cars.length} cars (#{(percentage * 100).to_i}%)"
+
+available_cars.first(cars_to_sell).each do |car_id|
   dealership = Dealership.all.sample
   salesperson = Salesperson.where(dealership_id: dealership.id).sample
 

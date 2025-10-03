@@ -15,7 +15,10 @@
       </ul>
     <% end %>
   <% end %>
-  <nav></nav>
+  <% if @car_purchases.any? %>
+    <%= render 'purchase_history', purchases: @car_purchases %>
+  <% end %>
+  <nav>
     <a href="<%= cars_path %>">Back</a>
   </nav>
 </section>

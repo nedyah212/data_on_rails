@@ -1,0 +1,60 @@
+<nav>
+  <%= render 'shared/nav' %>
+</nav>
+
+<main>
+  <section id="about-section">
+    <header class="section-header">
+      <h1>About This Webpage</h1>
+    </header>
+
+    <article class="about-content">
+      <section class="body-group">
+        <h2>Purpose</h2>
+        <p>This webpage is used by stakeholders at Prism Holdings to track bi-weekly sales records, including closed sales, inventory levels, and sales leads.</p>
+        <p>The data displayed here is test data gathered from various sources for demonstration purposes.</p>
+      </section>
+
+      <section class="body-group">
+        <h2>Data Disclaimer</h2>
+        <p>I tried to make the data as realistic as possible, but please keep in mind that it is not based on actual sales records. Some inconsistencies may exist, such as:</p>
+        <ul>
+          <li>Location and phone number mismatches</li>
+          <li>Unrealistic vehicle pricing</li>
+        </ul>
+      </section>
+
+      <section class="body-group">
+        <h2>About This Project</h2>
+        <p>This is a learning project created to explore Ruby on Rails and web development fundamentals.</p>
+      </section>
+
+      <section class="body-group">
+        <h2>Data Sources</h2>
+        <ul>
+          <li><strong>API:</strong> carqueryapi.com - provides realistic car data, models, and trim levels</li>
+          <li><strong>AI:</strong> Generated features, cities, and provinces</li>
+          <li><strong>Manual Entry:</strong> Hand-curated manufacturer list (filtered to exclude motorcycles and tractors)</li>
+          <li><strong>Faker:</strong> Added realistic details to base data</li>
+        </ul>
+      </section>
+
+      <section class="body-group">
+        <h2>Dynamic Data</h2>
+        <p>Some data is dynamically generated and will change if you run <code>db:reset</code>. Try it out!</p>
+        <p><em>Future improvement:</em> Create a function to manage data proportions across tables more consistently.</p>
+      </section>
+
+      <section class="body-group">
+        <h2>ERD Diagram</h2>
+        <p>Here is my schema for the project.</p>
+        <%= image_tag 'erd.png', alt: 'Entity Relationship Diagram', class: 'erd-image', style: 'width: 100%; max-width: 800px;' %>
+      </section>
+
+      <footer class="body-group">
+        <p><strong>Developer's Note:</strong> Gathering and curating this data was probably the most entertaining part of this assignment!</p>
+      </footer>
+
+    </article>
+  </section>
+</main>

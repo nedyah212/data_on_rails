@@ -173,32 +173,28 @@ puts "Seeding Car Purchases with Cars, People, Dealerships"
 
 available_cars = Car.pluck(:id).shuffle
 
-percentage = rand(70..80) / 100.0
-cars_to_sell = (available_cars.length * percentage).to_i
-
-puts "Assigning purchases to #{cars_to_sell} out of #{available_cars.length} cars (#{(percentage * 100).to_i}%)"
-
-available_cars.first(cars_to_sell).each do |car_id|
+available_cars.each do |car_id|
   dealership = Dealership.all.sample
   salesperson = Salesperson.where(dealership_id: dealership.id).sample
 
-  next if salesperson.nil?
+  rand_int = rand(1..10)
+  target = rand(7..8)
 
-  begin
-    CarPurchase.create!(
-      car_id: car_id,
-      person_id: Person.all.sample.id,
-      dealership_id: dealership.id,
-      salesperson_id: salesperson.id,
-      purchase_date: Faker::Date.between(from: '2020-01-01', to: '2023-01-01'),
-      price_paid: Faker::Commerce.price(range: 10000..100000),
-      financing_type: ['cash', 'loan', 'lease'].sample,
-      kilometers_at_purchase: rand(0..200000),
-      condition: ['new', 'used', 'certified pre-owned'].sample
-    )
-  rescue ActiveRecord::RecordInvalid => e
-    puts "Failed to create purchase for car #{car_id}: #{e.message}"
+  if rand_int > target
+    next
+  else
+  cp = CarPurchase.create!(
+    car_id: car_id,
+    person_id: Person.all.sample.id,
+    dealership_id: dealership.id,
+    salesperson_id: salesperson.id,
+    purchase_date: Faker::Date.between(from: '2020-01-01', to: '2023-01-01'),
+    price_paid: Faker::Commerce.price(range: 10000..100000),
+    financing_type: ['cash', 'loan', 'lease'].sample,
+    kilometers_at_purchase: rand(0..200000),
+    condition: ['new', 'used', 'certified pre-owned'].sample
+  )
   end
 end
-
 puts "----Created #{CarPurchase.count} car purchases"
+

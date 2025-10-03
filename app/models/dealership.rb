@@ -1,5 +1,6 @@
 class Dealership < ApplicationRecord
   belongs_to :city
+  has_many :salespeople
   has_many :car_purchases
 
   validates :name, presence: true, uniqueness: true

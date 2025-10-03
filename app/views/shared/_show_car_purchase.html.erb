@@ -1,28 +1,9 @@
 <section class='car-purchase-section'>
-  <h3>Car Purchase Details:</h3>
-
-  <% if @car_purchase.present? %>
-    <h4><%= @car_purchase.car.year %> <%= @car_purchase.car.manufacturer.name %> <%= @car_purchase.car.model %></h4>
-    <p>Colour: <%= @car_purchase.car.color %></p>
-    <p class='cell-group'>Trim: <%= @car_purchase.car.trim %></p>
-
-    <% if @car_purchase.car.features.any? %>
-      <h5>Features:</h5>
-      <ul>
-        <% @car_purchase.car.features.each do |feature| %>
-          <li><%= feature.name %></li>
-        <% end %>
-      </ul>
-    <% end %>
-
+  <% purchases.each do |car_purchase| %>
     <h5>Purchase Information:</h5>
-    <p>Customer: <%= @car_purchase.person.full_name %></p>
-    <p>Purchase Date: <%= @car_purchase.purchase_date.strftime("%B %d, %Y") %></p>
-    <p>Price Paid: <%= number_to_currency(@car_purchase.price_paid) %></p>
-    <p>Salesperson: <%= @car_purchase.salesperson.person.full_name %></p>
+    <p>Customer: <%= car_purchase.person.full_name %></p>
+    <p>Purchase Date: <%= car_purchase.purchase_date.strftime("%B %d, %Y") %></p>
+    <p>Price Paid: <%= number_to_currency(car_purchase.price_paid) %></p>
+    <p>Salesperson: <%= car_purchase.salesperson.person.full_name %></p>
   <% end %>
-
-  <nav>
-    <a href="<%= car_purchases_path %>">Back to All Purchases</a>
-  </nav>
 </section>

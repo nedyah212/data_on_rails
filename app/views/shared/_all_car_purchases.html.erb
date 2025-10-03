@@ -12,14 +12,14 @@
       </tr>
     </thead>
     <tbody class='table-body'>
-      <% @car_purchases.each do |purchase| %>
+      <% car_purchases.each do |purchase| %>
         <tr class='table-row'>
-          <td class='table-cell-group'><a href="<%= car_purchase_path(purchase.car) %>"><%= purchase.car.model %></a></td>
+          <td class='table-cell-group'><%= link_to purchase.car.model, car_path(purchase.car) %></td>
           <td class='table-cell-group'><%= purchase.car.manufacturer.name %></td>
-          <td class='table-cell-group'><%= "#{purchase.person.full_name}" %></td>
+          <td class='table-cell-group'><%= purchase.person.full_name %></td>
           <td class='table-cell-group'><%= purchase.purchase_date.strftime("%B %d, %Y") %></td>
           <td class='table-cell-group'><%= number_to_currency(purchase.price_paid) %></td>
-          <td class='table-cell-group'><%= "#{purchase.salesperson.person.full_name}"%></td>
+          <td class='table-cell-group'><%= purchase.salesperson.person.full_name %></td>
         </tr>
       <% end %>
     </tbody>

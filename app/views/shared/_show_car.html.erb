@@ -1,7 +1,6 @@
 <section class='car-section'>
-  <h3>Car Details:</h3>
-
   <% if @car.present? %>
+    <h3>Car Details:</h3>
     <h4><%= @car.year %> <%= @car.manufacturer.name %> <%= @car.model %></h4>
     <p>Colour: <%= @car.color %></p>
     <p class='cell-group'>Trim: <%= @car.trim %></p>
@@ -15,10 +14,7 @@
       </ul>
     <% end %>
   <% end %>
-  <% if @car_purchases.any? %>
-    <%= render 'purchase_history', purchases: @car_purchases %>
+  <% if @car_purchases&.any? %>
+    <%= render 'shared/show_car_purchase', purchases: @car_purchases %>
   <% end %>
-  <nav>
-    <a href="<%= cars_path %>">Back</a>
-  </nav>
 </section>

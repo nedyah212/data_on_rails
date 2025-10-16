@@ -19,7 +19,6 @@ gem "jbuilder"
 gem 'faker', '~> 3.5.2'
 gem 'csv', '~> 3.1.9'
 gem 'kaminari'
-gem 'w3c_validators', '~> 1.3.3'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

@@ -12,4 +12,3 @@ class CarsController < ApplicationController
     @car_purchases = CarPurchase.includes(:person, :dealership, :salesperson).where(car_id: @car.id)
   end
 end
-``

@@ -1,0 +1,12 @@
+<div class="search-results">
+  <% if @results.any? %>
+    <h2>Results for "<%= @query %>"</h2>
+    <% @results.each do |result| %>
+      <div class="result-item">
+        <%= link_to result.model, result %>
+      </div>
+    <% end %>
+  <% elsif @query.present? %>
+    <p>No results found for "<%= @query %>"</p>
+  <% end %>
+</div>

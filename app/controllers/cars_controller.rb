@@ -11,4 +11,14 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
     @car_purchases = CarPurchase.includes(:person, :dealership, :salesperson).where(car_id: @car.id)
   end
-end
+
+    def search
+      @query = params[:query]
+
+      if @query.present?
+        @results = Car.where("model LIKE ?", "%#{@query}%")
+      else
+        @results = []
+      end
+    end
+  end

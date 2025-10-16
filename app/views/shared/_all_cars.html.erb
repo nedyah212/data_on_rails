@@ -15,7 +15,7 @@
       <% @cars.each do |car| %>
         <tr class='table-row'>
           <td class='table-cell-group'><a href="<%= car_path(car) %>"><%= car.model %></a></td>
-          <td class='table-cell-group'><%= car.manufacturer.name %></td>
+          <td class='table-cell-group'><%= link_to car.manufacturer.name, manufacturer_path(car.manufacturer) %></td>
           <td class='table-cell-group'><%= car.year %></td>
           <td class='table-cell-group'><%= car.color %></td>
           <td class='table-cell-group'><%= car.trim %></td>

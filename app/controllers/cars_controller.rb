@@ -12,7 +12,7 @@ class CarsController < ApplicationController
     @car_purchases = CarPurchase.includes(:person, :dealership, :salesperson).where(car_id: @car.id)
   end
 
-    def search
+  def search
       @query = params[:query]
 
       if @query.present?

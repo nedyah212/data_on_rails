@@ -1,0 +1,13 @@
+
+  "http://127.0.0.1:3000",
+  "http://127.0.0.1:3000/static/index",
+  "http://127.0.0.1:3000/car_purchases",
+  "http://127.0.0.1:3000/cars/1",
+  "http://127.0.0.1:3000/cars",
+  "http://127.0.0.1:3000/cars/2",
+  "http://127.0.0.1:3000/search?query=X4&commit=Search",
+  "http://127.0.0.1:3000/people",
+  "http://127.0.0.1:3000/manufacturers",
+  "http://127.0.0.1:3000/manufacturers/1",
+  "http://127.0.0.1:3000/dealerships",
+  "http://127.0.0.1:3000/dealerships/1"

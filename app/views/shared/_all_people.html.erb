@@ -12,7 +12,7 @@
     <tbody class='table-body'>
       <% @people.each do |person| %>
         <tr class='table-row'>
-          <td class='table-cell-group'><%= person.full_name%></td>
+          <td class='table-cell-group'><%= link_to person.full_name, person_path(person) %></td>
           <td class='table-cell-group'><%= person.email %></td>
           <td class='table-cell-group'><%= person.age %></td>
           <td class='table-cell-group'><%= person.phone %></td>

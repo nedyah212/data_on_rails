@@ -1,7 +1,7 @@
 <section class='car-purchase-section'>
   <% purchases.each do |car_purchase| %>
     <h5>Purchase Information:</h5>
-    <p>Customer: <%= car_purchase.person.full_name %></p>
+    <td><%= link_to car_purchase.person.full_name, person_path(car_purchase.person) %></td>
     <p>Purchase Date: <%= car_purchase.purchase_date.strftime("%B %d, %Y") %></p>
     <p>Price Paid: <%= number_to_currency(car_purchase.price_paid) %></p>
     <p>Salesperson: <%= car_purchase.salesperson.person.full_name %></p>

@@ -1,0 +1,12 @@
+<section class='person-section'>
+  <h3>Person Information</h3>
+
+  <% if @person.present? %>
+    <h4><%= @person.first_name %> <%= @person.last_name %></h4>
+    <p>Email: <%= @person.email %></p>
+    <p>Phone: <%= @person.phone %></p>
+    <p>Age: <%= @person.age %></p>
+    <p>Income Bracket: <%= @person.income_bracket %></p>
+    <p>City: <%= link_to @person.city.name, city_path(@person.city) %></p>
+  <% end %>
+</section>

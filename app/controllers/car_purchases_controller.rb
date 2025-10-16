@@ -5,4 +5,16 @@ class CarPurchasesController < ApplicationController
       .order('dealerships.name ASC')
       .page params[:page]
   end
+
+  def search
+    @query = params[:query]
+
+    if @query.present?
+      @results = CarPurchase.where("cars.name LIKE ?", "%#{@query}%")
+        .includes(:car, :person, :dealership, :salesperson)
+        .joins(:car)
+    else
+      @results = []
+    end
+  end
 end

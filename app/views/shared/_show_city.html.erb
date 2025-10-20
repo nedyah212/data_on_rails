@@ -1,0 +1,10 @@
+<section class='city-section'>
+  <h3>City Information</h3>
+
+  <% if @city.present? %>
+    <h4><%= @city.name %></h4>
+    <p>Province: <%= @city.province %></p>
+    <p>Country: <%= @city.country %></p>
+    <p>Population: <%= @city.population %></p>
+  <% end %>
+</section>

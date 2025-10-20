@@ -16,11 +16,7 @@
           <td class='table-cell-group'><%= person.email %></td>
           <td class='table-cell-group'><%= person.age %></td>
           <td class='table-cell-group'><%= person.phone %></td>
-          <td class='table-cell-group'>
-          <td>
-            <% dealerships = person.city.dealerships %>
-            <%= link_to person.city.name, dealership_path(dealerships.first) %>
-          </td>
+          <td class='table-cell-group'><%= link_to person.city.name, city_path(person.city) %></td>
         </tr>
       <% end %>
     </tbody>

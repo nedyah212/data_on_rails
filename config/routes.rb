@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :cities, only: [:index, :show]
   resources :manufacturers, only: [:index, :show]
   resources :cars, only: [:index, :show]
+  resources :cities, only: [:show]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

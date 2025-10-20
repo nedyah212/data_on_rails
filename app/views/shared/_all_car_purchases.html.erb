@@ -19,7 +19,7 @@
           <td class='table-cell-group'><%= link_to purchase.person.full_name, person_path(purchase.person) %></td>
           <td class='table-cell-group'><%= purchase.purchase_date.strftime("%B %d, %Y") %></td>
           <td class='table-cell-group'><%= number_to_currency(purchase.price_paid) %></td>
-          <td class='table-cell-group'><%= purchase.salesperson.person.full_name %></td>
+          <td class='table-cell-group'><%= link_to purchase.salesperson.person.full_name, person_path(purchase.salesperson.person) %></td>
         </tr>
       <% end %>
     </tbody>
